@@ -1,0 +1,33 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?user=root&password=root&serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  main:
+    allow-circular-references: true
+  thymeleaf:
+    cache: false
+  web:
+    resources:
+      # 静态路径
+      static-locations: classpath:/templates/,classpath:/static/,classpath:/resources/
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package: com.aaa.entity
+
+pagehelper:
+  helper-dialect: mysql
+  offset-as-page-num: true
+  # 合理化：pageNum<1查第一页，pageNum>pageCount 查最后一页
+  reasonable: true
+  support-methods-arguments: true
+
+logging:
+  level:
+    com.aaa.dao: trace
+server:
+  port: 8090
