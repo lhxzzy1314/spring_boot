@@ -16,7 +16,6 @@ import java.util.List;
  * @Description TODO
  */
 @RestController
-@CrossOrigin("http://localhost:8080")
 @RequestMapping("publisher")
 public class PublisherController {
     @Resource

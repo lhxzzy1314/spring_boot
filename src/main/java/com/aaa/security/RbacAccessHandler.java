@@ -21,7 +21,7 @@ public class RbacAccessHandler {
         if (authentication instanceof AnonymousAuthenticationToken) {
             // 未登录
             System.out.println("未登录请登陆");
-            return true;
+            return false;
         } else {
             System.out.println("已登录请访问");
             // 已经登录

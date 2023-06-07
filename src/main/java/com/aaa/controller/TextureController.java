@@ -17,7 +17,6 @@ import java.util.List;
  * @Description TODO
  */
 @RestController
-@CrossOrigin("http://localhost:8080")
 @RequestMapping("texture")
 public class TextureController {
     @Resource

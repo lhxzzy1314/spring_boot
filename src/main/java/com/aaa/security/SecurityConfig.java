@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsUtils;
 
 import javax.annotation.Resource;
 
@@ -46,6 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout().logoutSuccessHandler(logoutHandler);
         // 授权请求如何访问
         http.authorizeRequests()
+                .requestMatchers(CorsUtils::isPreFlightRequest)
+                .permitAll()
                 .anyRequest()
                 // 访问：根据方法的返回值判断是否可以访问，返回true可以访问，false禁止访问
                 .access("@rbacAccessHandler.hasPermission(request,authentication)");
@@ -59,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 权限不足：已经登录，但是访问被拒绝
                 .accessDeniedHandler(accDeniedHandler);
 
-        http.csrf().disable();
+        http.cors().and().csrf().disable();
     }
 
     /**
